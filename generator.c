@@ -11,7 +11,7 @@ const char* trigrams[] = {
 };
 
 void generate(char* s, int maxLength){
-    if(maxLength<3){
+    if(maxLength<4){
         s[0] = '\0';
         return;
     }
@@ -34,6 +34,10 @@ void generate(char* s, int maxLength){
         }
         /* failed to find a trigram? break in two words */
         if(t==nTrigrams){
+            if(maxLength-i-1 == 0){
+                s[i] = '\0';
+                return;
+            }
             s[i] = ' ';
             generate(s+i+1, maxLength-i-1);
             return;
